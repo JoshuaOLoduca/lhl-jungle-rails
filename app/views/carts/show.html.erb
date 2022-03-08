@@ -4,6 +4,7 @@
     <h1>My Cart</h1>
   </header>
 
+  <% if enhanced_cart.length != 0 %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -48,5 +49,9 @@
       <% end %>
     </div>
   </div>
+  <% else %>
+    <h2>Ya carts empty, my dude!</h2>
+    <%= link_to 'Go Buy some Items', products_path, class: 'btn btn-default' %>
+  <% end %>
 
 </section>
