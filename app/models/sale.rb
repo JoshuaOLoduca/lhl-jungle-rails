@@ -11,6 +11,15 @@ class Sale < ActiveRecord::Base
     now = Date.current
     where("ends_on >= ? and starts_on <= ?", now, now)
   end
+
+  def self.best_sale
+    active.order(percent_off: :desc).limit(1)[0]
+  end
+
+  def self.percentage
+    return 1 - (best_sale.percent_off.to_f / 100) if active.count
+    return 1
+  end
   
   def finished?
     ends_on < Date.current
