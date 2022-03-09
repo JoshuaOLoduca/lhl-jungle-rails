@@ -1,2 +1,19 @@
 <h1>Admin::Dashboard#show</h1>
 <p>Find me in app/views/admin/dashboard/show.html.erb</p>
+<div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Store Section</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @store_summary.each do |item| %>
+
+          <%= render 'item_sum', name: item[:name], link: item[:link], count: item[:count] %>
+
+        <% end %>
+      </tbody>
+    </table>
+  </div>
