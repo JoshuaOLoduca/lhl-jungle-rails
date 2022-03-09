@@ -1,11 +1,11 @@
 <section class="admin-products-new">
 
   <header class="page-header">
-    <h1>Admin &raquo; New Product</h1>
+    <h1>Admin &raquo; New Category</h1>
   </header>
 
   <div class="well">
-    <%= link_to 'All Products', [:admin, :categories], class: 'btn btn-info' %>
+    <%= link_to 'All Categories', [:admin, :categories], class: 'btn btn-info' %>
   </div>
 
   <div class="row">
@@ -28,7 +28,7 @@
         <%= form.text_field :name, class: 'form-control' %>
       </div>
 
-      <%= form.submit 'Create Product', class: 'btn btn-primary' %>
+      <%= form.submit 'Create Category', class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
