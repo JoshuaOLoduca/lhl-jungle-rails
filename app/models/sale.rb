@@ -16,6 +16,10 @@ class Sale < ActiveRecord::Base
     active.order(percent_off: :desc).limit(1)[0]
   end
 
+  def self.before_best_sale sub_total
+    (sub_total / Sale.percentage) * (1 - Sale.percentage)
+  end
+
   def self.percentage
     return 1 - (best_sale.percent_off.to_f / 100) if active?
     return 1

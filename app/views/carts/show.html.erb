@@ -27,7 +27,7 @@
             SAVINGS:
           </th>
           <th class="text-success">
-            -<%= humanized_money_with_symbol ((cart_subtotal_cents / Sale.percentage) * (1 - Sale.percentage)) / 100.0 %>
+            -<%= humanized_money_with_symbol Sale.before_best_sale cart_subtotal_cents / 100.0 %>
           </th>
         </tr>
         <% end %>
