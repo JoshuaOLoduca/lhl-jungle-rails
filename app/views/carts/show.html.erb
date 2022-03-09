@@ -21,6 +21,16 @@
         <% end %>
       </tbody>
       <tfoot>
+        <% if Sale.active? %>
+        <tr>
+          <th colspan="4">
+            SAVINGS:
+          </th>
+          <th class="text-success">
+            -<%= humanized_money_with_symbol ((cart_subtotal_cents / Sale.percentage) * (1 - Sale.percentage)) / 100.0 %>
+          </th>
+        </tr>
+        <% end %>
         <tr>
           <th colspan="4">
             TOTAL:

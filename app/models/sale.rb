@@ -17,8 +17,12 @@ class Sale < ActiveRecord::Base
   end
 
   def self.percentage
-    return 1 - (best_sale.percent_off.to_f / 100) if active.count
+    return 1 - (best_sale.percent_off.to_f / 100) if active?
     return 1
+  end
+
+  def self.active?
+    active.count > 0
   end
   
   def finished?
