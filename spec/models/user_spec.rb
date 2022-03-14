@@ -37,6 +37,15 @@ describe 'Validations' do
       end
     end
 
+    context 'add user to db with incorrect password confirmation' do
+      it 'return error about password confirmation' do
+        @user.password_confirmation = 'differentPassword'
+        @user.save
+
+        expect(@user.errors.full_messages).to include('Password confirmation doesn\'t match Password')
+      end
+    end
+
     context 'add user to db with no email' do
       it 'return error about email' do
         @user.email = nil
@@ -58,6 +67,17 @@ describe 'Validations' do
         @user2.save
 
         expect(@user2.errors.full_messages).to include('Email has already been taken')
+      end
+    end
+
+    context 'add user to db with an password below minimum length' do
+      it 'return error about password being short' do
+        @user.password = '12'
+        @user.password_confirmation = @user.password
+        
+        @user.save
+
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 3 characters)')
       end
     end
 
