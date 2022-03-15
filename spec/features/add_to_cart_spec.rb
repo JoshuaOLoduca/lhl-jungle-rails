@@ -17,9 +17,6 @@ RSpec.feature "Add To Cart", type: :feature, js: true do
 
     visit root_path
   end
-
-  # after :each do
-  # end
   
   scenario "Cart count goes up by 1 when item is added" do
     save_screenshot
