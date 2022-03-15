@@ -11,8 +11,7 @@ RSpec.feature "Visitor clicks product to view details", type: :feature, js: true
         description: Faker::Hipster.paragraph(4),
         image: open_asset('apparel1.jpg'),
         quantity: 10,
-        price: 64.99,
-        category_id: 1
+        price: 64.99
       )
     end
 
