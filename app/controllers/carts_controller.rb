@@ -1,6 +1,8 @@
-class CartsController < ApplicationController
+# frozen_string_literal: true
 
+class CartsController < ApplicationController
   def show
+    @user = User.find(session[:user_id]) if session[:user_id]
   end
 
   def add_item
@@ -24,5 +26,4 @@ class CartsController < ApplicationController
     cart.delete(product_id) if cart[product_id] < 1
     update_cart cart
   end
-
 end
