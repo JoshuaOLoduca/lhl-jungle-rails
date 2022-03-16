@@ -1,9 +1,16 @@
-Welcome to example.com, <%= @user.name %>
+Thank you for your order, <%= @user.name %>!
 ===============================================
- 
-You have successfully signed up to example.com,
-your username is: <%= @user.email %>.
- 
-To login to the site, just follow this link: <%= login_url %>.
- 
-Thanks for joining and have a great day!
+Order Id: <%= @order.id %>
+
+----------------ORDER----------------
+<% @order.line_items.each do |item| %>
+  <% product = item.product%>
+  <% quantity = item.quantity.to_i %>
+Name: <%= product.name %>
+Description: <%= product.description %>
+Price: <%= humanized_money_with_symbol product.price %>
+Quantity: <%= quantity %>
+Cost: <%= humanized_money_with_symbol product.price * quantity %>
+-------------------------------------
+<% end %>
+TOTAL: <%= humanized_money_with_symbol @order.total_cents / 100.0 %>
