@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
@@ -37,7 +39,7 @@ class OrdersController < ApplicationController
     order = Order.new(
       email: params[:stripeEmail],
       total_cents: cart_subtotal_cents,
-      stripe_charge_id: stripe_charge.id, # returned by stripe
+      stripe_charge_id: stripe_charge.id # returned by stripe
     )
 
     enhanced_cart.each do |entry|
@@ -51,6 +53,13 @@ class OrdersController < ApplicationController
       )
     end
     order.save!
+
+    user_id = session[:user_id]
+    if user_id
+      @user = User.find user_id
+      @order = order
+      OrderMailer.summary(@user, @order).deliver_later
+    end
     order
   end
 end
