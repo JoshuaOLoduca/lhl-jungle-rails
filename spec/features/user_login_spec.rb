@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "UserLogins", type: :feature, js: true do
+RSpec.feature 'UserLogins', type: :feature, js: true do
   # SETUP
   user_name = 'Ted Mosby'
   user_email = 'tedmosby@himym.com'
@@ -10,9 +12,8 @@ RSpec.feature "UserLogins", type: :feature, js: true do
 
     visit login_path
   end
-  
-  scenario "User is redirected to root on login" do
 
+  scenario 'User is redirected to root on login' do
     fill_in 'email', with: user_email
     fill_in 'password', with: user_password
 
@@ -22,9 +23,8 @@ RSpec.feature "UserLogins", type: :feature, js: true do
     expect(page).to have_content user_name
     expect(current_path).to eq root_path
   end
-  
-  scenario "User can login with mixed case email" do
 
+  scenario 'User can login with mixed case email' do
     fill_in 'email', with: user_email.upcase
     fill_in 'password', with: user_password
 
@@ -33,9 +33,8 @@ RSpec.feature "UserLogins", type: :feature, js: true do
     expect(page).to have_content user_name
     expect(current_path).to eq root_path
   end
-  
-  scenario "User can login with trailing spaces on email" do
 
+  scenario 'User can login with trailing spaces on email' do
     fill_in 'email', with: " #{user_email} "
     fill_in 'password', with: user_password
 
@@ -44,5 +43,4 @@ RSpec.feature "UserLogins", type: :feature, js: true do
     expect(page).to have_content user_name
     expect(current_path).to eq root_path
   end
-
 end
