@@ -53,13 +53,6 @@ class OrdersController < ApplicationController
       )
     end
     order.save!
-
-    user_id = session[:user_id]
-    if user_id
-      @user = User.find user_id
-      @order = order
-      OrderMailer.summary(@user, @order).deliver_later
-    end
     order
   end
 end
