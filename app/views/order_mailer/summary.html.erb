@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Welcome to example.com, <%= @user.name %></h1>
-    <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @user.email %>.<br>
-    </p>
-    <p>
-      To login to the site, just follow this link: <%= login_url %>.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
-  </body>
+<head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+</head>
+<section class="orders-show">
+  <header class="page-header">
+    <h1>Order #<%= @order.id %></h1>
+  </header>
+
+  <div class="order-summary jumbotron">
+    <h3>Thank you for your order!</h3>
+    <h4><%= @user.name%>!</h4>
+  </div>
+
+  <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.line_items.each do |item| %>
+
+          <%= render 'item', product: item.product, quantity: item.quantity.to_i %>
+
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="4">
+            TOTAL:
+          </th>
+          <th>
+            <%= humanized_money_with_symbol @order.total_cents / 100.0 %>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+</section>
+
 </html>
