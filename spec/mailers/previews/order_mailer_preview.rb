@@ -3,12 +3,31 @@
 # Preview all emails at http://localhost:3000/rails/mailers/order_mailer
 class OrderMailerPreview < ActionMailer::Preview
   def summary
-    @user = User.new(name: 'test', email: 'test@test.com', password: 'testy', password_confirmation: 'testy')
+    @user = User.new(
+      name: 'test',
+      email: 'test@test.com',
+      password: 'testy',
+      password_confirmation: 'testy'
+    )
 
-    @category = Category.new(name: 'TestCat')
-    @product = Product.new(name: 'prod1', description: 'Prod Desc', image: open_asset('apparel3.jpg'), price_cents: 100, quantity: 2)
+    @category = Category.new(
+      name: 'TestCat'
+    )
+    @product = Product.new(
+      name: 'prod1',
+      description: 'Prod Desc',
+      image: open_asset('apparel3.jpg'),
+      price_cents: 100,
+      quantity: 2
+    )
 
-    @product2 = Product.new(name: 'prod2', description: 'Prod2 Desc', image: open_asset('apparel4.jpg'), price_cents: 100, quantity: 2)
+    @product2 = Product.new(
+      name: 'prod2',
+      description: 'Prod2 Desc',
+      image: open_asset('apparel4.jpg'),
+      price_cents: 100,
+      quantity: 2
+    )
 
     # @order = Order.new!(total_cents: 200,)
     @order = Order.new(
@@ -31,7 +50,7 @@ class OrderMailerPreview < ActionMailer::Preview
       item_price: 100,
       total_price: 200
     )
-    # default_url_options[:host] = 'localhost:3000'
+
     OrderMailer.summary @order
   end
 
