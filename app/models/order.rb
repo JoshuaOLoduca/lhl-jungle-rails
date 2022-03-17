@@ -14,7 +14,5 @@ class Order < ActiveRecord::Base
       product.quantity -= line_item.quantity
       product.save!
     end
-
-    OrderMailer.summary(order).deliver_now
   end
 end

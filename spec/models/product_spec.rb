@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
@@ -5,9 +7,9 @@ RSpec.describe Product, type: :model do
     before(:each) do
       @product = Product.new
       @product.name = 'a name-a'
-      @product.price_cents = 1;
-      @product.quantity = 1;
-      @product.category_id = Category.all.first.id;
+      @product.price_cents = 1
+      @product.quantity = 1
+      @product.category_id = Category.create(name: 'test cat').id
     end
 
     context 'add product to db with no name' do
@@ -51,6 +53,5 @@ RSpec.describe Product, type: :model do
         expect(@product.save).to eq(true)
       end
     end
-
   end
 end
