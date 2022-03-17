@@ -34,7 +34,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
         <li>
-          Signed in as <%= current_user.name %>
+          <div style="padding: 15px 0;">Signed in as <%= current_user.name %></div>
         </li>
         <li>
           <%= link_to 'Logout', logout_path%>
