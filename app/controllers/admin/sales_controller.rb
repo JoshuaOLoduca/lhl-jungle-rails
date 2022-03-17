@@ -1,5 +1,4 @@
-class Admin::SalesController < ApplicationController
-  http_basic_authenticate_with name: ENV['ADMIN_LOGIN'], password: ENV['ADMIN_PASSWORD']
+class Admin::SalesController < Admin::AdminController
 
   def index
     @sales = Sale.all.order(ends_on: :desc, percent_off: :desc)
